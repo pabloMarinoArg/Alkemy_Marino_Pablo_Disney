@@ -27,10 +27,7 @@ public class MovieMapper {
         return movieDTO;
     }
 
-    private LocalDate string2LocalDate(String stringDate){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(stringDate,formatter);
-    }
+
 
     public MovieEntity movieDtoToEntity(MovieDTO movieDTO){
         MovieEntity movieEntity = new MovieEntity();
@@ -38,6 +35,7 @@ public class MovieMapper {
         movieEntity.setTitle(movieDTO.getTitle());
         movieEntity.setCalification(movieDTO.getCalification());
         movieEntity.setDoc(this.string2LocalDate(movieDTO.getDoc()));
+        movieDTO.setCharacterList(movieDTO.getCharacterList());
         return movieEntity;
 
     }
@@ -53,6 +51,11 @@ public class MovieMapper {
 
         return listBasicDto;
 
+    }
+
+    private LocalDate string2LocalDate(String stringDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(stringDate,formatter);
     }
     //public List<MovieEntity> movieListDtoToEntity(){}
 
