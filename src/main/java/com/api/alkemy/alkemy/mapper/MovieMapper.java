@@ -39,6 +39,9 @@ public class MovieMapper {
         return movieEntity;
 
     }
+
+
+
     public List<MovieBasicDTO> movieListEntityToBasicDto(Collection<MovieEntity> listEntity){
         List<MovieBasicDTO> listBasicDto = new ArrayList<>();
 
@@ -47,6 +50,7 @@ public class MovieMapper {
             basic.setImgUrl(mentity.getImgUrl());
             basic.setTitle(mentity.getTitle());
             basic.setDoc(mentity.getDoc().toString());
+            listBasicDto.add(basic);
         }
 
         return listBasicDto;

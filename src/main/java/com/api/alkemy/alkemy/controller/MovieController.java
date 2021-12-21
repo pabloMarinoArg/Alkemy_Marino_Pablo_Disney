@@ -2,6 +2,7 @@ package com.api.alkemy.alkemy.controller;
 
 import com.api.alkemy.alkemy.dto.MovieBasicDTO;
 import com.api.alkemy.alkemy.dto.MovieDTO;
+import com.api.alkemy.alkemy.entity.MovieEntity;
 import com.api.alkemy.alkemy.service.implementation.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class MovieController {
     @GetMapping
     public ResponseEntity<List<MovieBasicDTO>> findAll(){
         List<MovieBasicDTO> basicList = movieService.listOfMovies();
+
         return ResponseEntity.status(HttpStatus.OK).body(basicList);
     }
     @GetMapping("/{id}")

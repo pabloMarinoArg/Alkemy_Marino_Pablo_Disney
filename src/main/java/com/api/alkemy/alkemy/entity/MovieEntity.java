@@ -1,6 +1,12 @@
 package com.api.alkemy.alkemy.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,6 +15,10 @@ import java.util.List;
 
 @Entity
 @Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class MovieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +33,12 @@ public class MovieEntity {
     private List<CharacterEntity> characterList;
     @ManyToOne
     @JoinColumn(name = "gender_id",nullable = true)
+    @Getter(AccessLevel.NONE)
     private GenderEntity gender;
 
 
-
-
-
+    @JsonManagedReference
+    public GenderEntity getGender() {
+        return gender;
+    }
 }

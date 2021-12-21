@@ -9,6 +9,7 @@ import com.api.alkemy.alkemy.repository.CharacterRepository;
 import com.api.alkemy.alkemy.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
@@ -20,6 +21,7 @@ public class CharacterServiceImpl implements CharacterService {
     private CharacterRepository characterRepository;
 
     @Override
+    @Transactional
     public CharacterDTO save(CharacterDTO characterDTO) {
 
         CharacterEntity characterEntity = characterMapper.characterDtoToEntity(characterDTO);
@@ -31,12 +33,14 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<CharacterBasicDTO> findAll() {
        return  characterMapper.characterListBasicEntityToDto(characterRepository.findAll());
 
     }
 
     @Override
+    @Transactional(readOnly = true)
     public CharacterDTO findCharacterById(Long id) {
 
         CharacterEntity characterEntity = characterRepository.findById(id).orElse(null);
@@ -48,12 +52,14 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         characterRepository.deleteById(id);
 
        }
 
     @Override
+    @Transactional
     public CharacterDTO modify(CharacterDTO characterDTO, Long id) {
         CharacterEntity characterEntity = characterRepository.findById(id).orElse(null);
 
@@ -68,6 +74,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
+    @Transactional
     public CharacterDTO addMovie(MovieDTO movieDTO, Long id) {
         CharacterEntity characterEntity = characterRepository.findById(id).orElse(null);
 

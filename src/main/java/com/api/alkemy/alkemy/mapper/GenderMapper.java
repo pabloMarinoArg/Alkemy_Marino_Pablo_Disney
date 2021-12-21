@@ -17,7 +17,7 @@ public class GenderMapper {
         dto.setId(genderEntity.getId());
         dto.setImgUrl(genderEntity.getImgUrl());
         dto.setName(genderEntity.getName());
-        //dto.setMovieList(genderEntity.getMovieList());
+        dto.setMovieList(genderEntity.getMovieList());
 
         return dto;
     }
